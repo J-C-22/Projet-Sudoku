@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1793722747 source:c:\mes codes\sudoku\donnees.c
+	"donnees.h"
+
+1793736434 c:\mes codes\sudoku\donnees.h
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+
+1793720336 source:c:\mes codes\sudoku\saisie.c
+	"saisie.h"
+	<stdio.h>
+
+1793720336 c:\mes codes\sudoku\saisie.h
+	<stdio.h>
+	"affichage.h"
+
+1793722878 source:c:\mes codes\sudoku\main.c
+	"donnees.h"
+	"saisie.h"
+	"affichage.h"
+
+1793719548 source:c:\mes codes\sudoku\affichage.c
+	"affichage.h"
+
+1793720336 c:\mes codes\sudoku\affichage.h
+	"donnees.h"
+
