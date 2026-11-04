@@ -1,10 +1,10 @@
 #include "donnees.h"
 
-
+//hvgdqfvbqdbvhqdbfvqndvjn
 
 //Convention:
-//return -1 si problème
-//return 1 si tout s'est bien passé
+//return -1 si problï¿½me
+//return 1 si tout s'est bien passï¿½
 
 
 Sudoku* initSudoku(char* grille, char* difficulte){
@@ -38,7 +38,7 @@ Sudoku* initSudoku(char* grille, char* difficulte){
             }
         }
     }
-    // On remplie la grille qui s'affiche à l'écran et la grille caseFixe
+    // On remplie la grille qui s'affiche ï¿½ l'ï¿½cran et la grille caseFixe
     for (int i=0; i<TAILLE;i++){
         for(int j=0;j<TAILLE;j++){
             if (fscanf(diff, "%d",&s->grille[i][j])!= 1){//on les met dans la grille et on verifie si il y a bien quelques chose
@@ -70,7 +70,7 @@ bool estCaseVide(Sudoku* s,int i, int j){
 }
 
 
-//Convention: 1 = case fixe, 0 = case à compléter
+//Convention: 1 = case fixe, 0 = case ï¿½ complï¿½ter
 bool estCaseFixe(Sudoku* s,int i, int j){
     if (s->caseFixe[i][j]==0){return false;}
     else{return true;}
