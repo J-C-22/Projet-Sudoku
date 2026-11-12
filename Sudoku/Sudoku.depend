@@ -26,31 +26,35 @@
 1793720336 c:\mes codes\sudoku\affichage.h
 	"donnees.h"
 
-1793719548 source:c:\mes codes\projet sudoku\sudoku\affichage.c
+1793817130 source:c:\mes codes\projet sudoku\sudoku\affichage.c
 	"affichage.h"
 
-1793814416 c:\mes codes\projet sudoku\sudoku\affichage.h
+1794479045 c:\mes codes\projet sudoku\sudoku\affichage.h
 	"donnees.h"
 
-1793736434 c:\mes codes\projet sudoku\sudoku\donnees.h
+1794480657 c:\mes codes\projet sudoku\sudoku\donnees.h
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
 
-1793813529 source:c:\mes codes\projet sudoku\sudoku\donnees.c
+1794479713 source:c:\mes codes\projet sudoku\sudoku\donnees.c
 	"donnees.h"
+	<stdlib.h>
+	<stdlib.h>
+	<stdlib.h>
 
-1793815784 source:c:\mes codes\projet sudoku\sudoku\main.c
+1794480026 source:c:\mes codes\projet sudoku\sudoku\main.c
 	"donnees.h"
 	"saisie.h"
 	"affichage.h"
+	<time.h>
 
-1793816101 c:\mes codes\projet sudoku\sudoku\saisie.h
+1793882983 c:\mes codes\projet sudoku\sudoku\saisie.h
 	<stdio.h>
 	<stdio.h>
 	<ctype.h>
 	<limits.h>
 
-1793816101 source:c:\mes codes\projet sudoku\sudoku\saisie.c
+1793882983 source:c:\mes codes\projet sudoku\sudoku\saisie.c
 	"saisie.h"
 

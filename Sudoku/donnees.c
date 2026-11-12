@@ -6,21 +6,37 @@
 //return -1 si probl�me
 //return 1 si tout s'est bien pass�
 
+#include <stdlib.h>
 
-Sudoku* initSudoku(char* grille, char* difficulte){
+#include <stdlib.h>
+
+#include <stdlib.h>
+
+void genererGrille(int n, int grille[9][9]){
+    int ligne, colonne;
+    int tab[81] = {0};
+    int position;
+    for (int i = 0; i < n; i++){
+            position = rand() % 81;
+            while(tab[position] ==1){
+                  position = rand() % 81;
+                  }
+            tab[position] = 1;
+            ligne = position / 9;
+            colonne = position % 9;
+            grille[ligne][colonne] = 0;
+            }
+            }
+
+
+Sudoku* initSudoku(char* grille, int difficulte){
     Sudoku* s=malloc(sizeof(Sudoku));
     char cheminSol[100];
-    char cheminDiff[100];
     snprintf(cheminSol, sizeof(cheminSol ), "grilles/solution/%s", grille);
-    snprintf(cheminDiff, sizeof(cheminDiff), "grilles/%s/%s", difficulte, grille);
     FILE* sol = fopen(cheminSol,"r");
-    FILE* diff = fopen(cheminDiff,"r");
 
     //On verifie que ce n'est pas vide
     if(sol ==NULL){
-        printf("Erreur: Impossible d'ouvrir le fichier. Il est vide\n");
-    }
-    if(diff ==NULL){
         printf("Erreur: Impossible d'ouvrir le fichier. Il est vide\n");
     }
     // On remplie la grille solution
@@ -38,18 +54,19 @@ Sudoku* initSudoku(char* grille, char* difficulte){
             }
         }
     }
-    // On remplie la grille qui s'affiche � l'�cran et la grille caseFixe
+    //On copie la solution dans grille
+    for (int i = 0; i < 9; i++){
+        for (int j = 0; j < 9; j++){
+            s->grille[i][j] = s->solution[i][j];
+        }
+    }
+    // On remplie la grille qui s'affiche à l'écran et la grille caseFixe
+    genererGrille(difficulte, s->grille);
+            //On verifie que les valeur sont entre 0 et 9, 0 car il y a des cases vides
     for (int i=0; i<TAILLE;i++){
         for(int j=0;j<TAILLE;j++){
-            if (fscanf(diff, "%d",&s->grille[i][j])!= 1){//on les met dans la grille et on verifie si il y a bien quelques chose
-                fclose(diff);
-                printf("Erreur: Impossible d'ouvrir le fichier. Il n'est pas complet2\n");
-                printf("erreur");
-            }
-            //On verifie que les valeur sont entre 0 et 9, 0 car il y a des cases vides
             if(s->grille[i][j] < 0|| s->grille[i][j]>9){
-                    fclose(diff);
-            printf("erreur");
+                    printf("erreur");
             }
             if(s->grille[i][j]!=0){s->caseFixe[i][j]=1;}
             else{s->caseFixe[i][j]=0;}

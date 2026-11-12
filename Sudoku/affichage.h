@@ -1,7 +1,7 @@
 #include "donnees.h"
 
-#ifndef SAISIE_H
-#define SAISIE_H
+#ifndef AFFICHAGE_H
+#define AFFICHAGE_H
 
 void afficherMenu();//A faire pour Axel
 
