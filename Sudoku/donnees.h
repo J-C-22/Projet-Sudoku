@@ -8,6 +8,9 @@
 #define DONNEES_H
 
 #define TAILLE 9
+#define FACILE 35
+#define MOYEN 45
+#define DIFFICILE 53
 
 //Convention:
 //return -1 si problème
@@ -19,8 +22,9 @@ int grille[TAILLE][TAILLE];
 int caseFixe[TAILLE][TAILLE];
 int solution[TAILLE][TAILLE];
 }Sudoku;
+void genererGrille(int n, int grille[9][9]); //B
 
-Sudoku* initSudoku(char* grille, char* difficulte);//B
+Sudoku* initSudoku(char* grille, int difficulte);//B
 
 int obtenirValeur(Sudoku* s,int i, int j);
 
