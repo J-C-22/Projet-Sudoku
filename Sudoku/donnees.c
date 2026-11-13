@@ -110,5 +110,41 @@ int supprimerChiffre(Sudoku* s,int i, int j){
     return 1;
     }
 }
+int sauvegarderSudoku(Sudoku *s, char *nomFichier) {
+    char chemin[256];
+    sprintf(chemin, "grilles/saves/%s", nomFichier);
+    FILE *fichier = fopen(chemin, "w");
+    if (fichier == NULL){
+        return -1;
+    }
+    // Sauvegarde de la grille actuelle
+    fprintf(fichier, "MATRICE GRILLE\n");
+    for (int i = 0; i < TAILLE; i++) {
+        for (int j = 0; j < TAILLE; j++){
+            fprintf(fichier, "%d ", s->grille[i][j]);
+        }
+        fprintf(fichier, "\n");
+    }
+    fprintf(fichier, "\nMATRICE CASEFIXE\n");
 
+    // Sauvegarde des cases fixes
+    for (int i = 0; i < TAILLE; i++) {
+        for (int j = 0; j < TAILLE; j++) {
+            fprintf(fichier, "%d ", s->caseFixe[i][j]);
+        }
+        fprintf(fichier, "\n");
+    }
+    fprintf(fichier, "\nMATRICE SOLUTION\n");
+    // Sauvegarde de la solution
+    for (int i = 0; i < TAILLE; i++) {
+        for (int j = 0; j < TAILLE; j++) {
+            fprintf(fichier, "%d ", s->solution[i][j]);
+        }
+        fprintf(fichier, "\n");
+    }
+    if (fclose(fichier) != 0) {
+        return -1;
+    }
+    return 1;
+}
 

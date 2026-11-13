@@ -36,4 +36,6 @@ int placerChiffre(Sudoku* s,int i, int j, int x);//B
 
 int supprimerChiffre(Sudoku* s,int i, int j);//B
 
+int sauvegarderSudoku(Sudoku *s, char *nomFichier);//B
+
 #endif

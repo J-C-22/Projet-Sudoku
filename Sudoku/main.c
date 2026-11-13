@@ -8,5 +8,6 @@ int main(){
     menu();
     Sudoku* s = initSudoku("grille1.txt",FACILE);
     afficherPartie(s);
+    sauvegarderSudoku(s, "save1.txt");
     return 1;
 }
