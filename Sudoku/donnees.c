@@ -95,8 +95,8 @@ bool estCaseFixe(Sudoku* s,int i, int j){
 
 
 int placerChiffre(Sudoku* s,int i, int j, int x){
-    if(estCaseVide(s, i, j)){
-            s->grille[i][j]=0;
+    if(estCaseVide(s, i, j)&& s->solution[i][j]==x){
+            s->grille[i][j]=x;
             return 1;
     }
     return -1;
