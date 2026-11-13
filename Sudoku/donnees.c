@@ -76,12 +76,12 @@ bool estCaseFixe(Sudoku* s,int i, int j){
     else{return true;}
 }
 
-
 int placerChiffre(Sudoku* s,int i, int j, int x){
-    if(estCaseVide(s, i, j)){
-            s->grille[i][j]=0;
+    if(estCaseVide(s, i, j) && s->solution[i][j]==x){//pas besoin de vérifier les ligne et les colonnes si solution unique
+            s->grille[i][j]=1;
             return 1;
     }
+    printf("La case est déja remplie ou la réponse est fausse.");
     return -1;
 }
 
