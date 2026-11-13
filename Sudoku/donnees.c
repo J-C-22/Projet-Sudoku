@@ -77,7 +77,7 @@ bool estCaseFixe(Sudoku* s,int i, int j){
 }
 
 int placerChiffre(Sudoku* s,int i, int j, int x){
-    if(estCaseVide(s, i, j) && s->solution[i][j]==x){//pas besoin de vérifier les ligne et les colonnes si solution unique
+    if(estCaseVide(s, i, j) && s->solution[i][j]==x){//pas besoin de vérifier les ligne et les colonnes si solution unique.
             s->grille[i][j]=1;
             return 1;
     }
