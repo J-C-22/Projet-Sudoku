@@ -6,7 +6,7 @@
 #include <limits.h>
 #include <string.h>
 
-int lireChoix(void)
+int lireChoix(int min, int max)
 {
     char saisie[100];
     int choix;
@@ -27,7 +27,7 @@ int lireChoix(void)
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
 
-            printf("Saisie trop longue ou invalide. Reessayez : ");
+            printf("Saisie trop longue ou invalide. Entrez un nombre entre %d et %d : ", min, max);
             continue;
         }
 
@@ -67,15 +67,19 @@ int lireChoix(void)
         if (saisie[i] != '\0')
             invalide = 1;
 
+        // Vérifie que le nombre est dans l'intervalle autorisé.
+        if (!invalide && (choix < min || choix > max))
+            invalide = 1;
+
         if (!invalide)
             return choix;
 
-        printf("Saisie invalide ! Entrez uniquement un chiffre : ");
+        printf("Saisie invalide ! Entrez un nombre entre %d et %d : ", min, max);
     }
 }
 
 
-void menu()
+void menu(void)
 {
     int choix;
 
@@ -89,7 +93,11 @@ void menu()
 
         // Récupération du choix avec vérification de la saisie.
         printf("Votre choix : ");
-        choix = lireChoix();
+        choix = lireChoix(1, 4);
+
+        // Flux d'entrée fermé : on quitte pour éviter une boucle infinie.
+        if (choix == -1)
+            return;
 
         // Exécution de l'action correspondant au choix.
         switch (choix)
@@ -111,14 +119,14 @@ void menu()
                 return;
 
             default:
-                // Toute option non prévue entraîne un retour au menu.
+                // Ne devrait plus arriver : lireChoix filtre déjà 1 à 4.
                 printf("Choix invalide ! \n\n");
                 break;
         }
     }
 }
 
-void nouvellePartie()
+void nouvellePartie(void)
 {
     int choix;
 
@@ -132,7 +140,11 @@ void nouvellePartie()
 
         // Récupération du choix de difficulté.
         printf("Votre choix : ");
-        choix = lireChoix();
+        choix = lireChoix(1, 4);
+
+        // Flux d'entrée fermé : retour au menu (qui quittera aussi).
+        if (choix == -1)
+            return;
 
         // Exécution de l'action correspondant au choix.
         switch (choix)
@@ -153,14 +165,15 @@ void nouvellePartie()
                 return;
 
             default:
-                // En cas d'erreur, le menu de difficulté est réaffiché.
+                // Ne devrait plus arriver : lireChoix filtre déjà 1 à 4.
                 printf("Choix invalide ! \n\n");
                 break;
         }
     }
 }
 
-void main()
+int main(void)
 {
-menu();
+    menu();
+    return 0;
 }

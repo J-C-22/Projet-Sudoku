@@ -11,5 +11,5 @@ void menu(); //Affiche le menu principal du Sudoku et permet à l'utilisateur de
 
 void nouvellePartie(); //Affiche le menu de sélection de difficulté d'une nouvelle partie.
 
-int lireChoix(); // Fonction permettant de sécuriser la saisie utilisateur. Retourne l'entier saisi si la saisie est valide et retourne -1 si la lecture échoue.
+int lireChoix(int min, int max); // Fonction permettant de sécuriser la saisie utilisateur. Retourne l'entier saisi si la saisie est valide et retourne -1 si la lecture échoue. la fonction lireChoix accepte les entiers entre min et max.
 #endif
