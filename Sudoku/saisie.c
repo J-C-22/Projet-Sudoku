@@ -6,6 +6,10 @@
 #include <limits.h>
 #include <string.h>
 
+// Valeurs de retour de menuDifficulte().
+#define DIFFICULTE_CHOISIE 0
+#define RETOUR_MENU        1
+
 int lireChoix(int min, int max)
 {
     char saisie[100];
@@ -99,7 +103,10 @@ void menu(void)
         switch (choix)
         {
             case 1:
-                menuDifficulte();
+                // RETOUR_MENU : on réaffiche le menu principal.
+                // Sinon (difficulté choisie ou flux fermé) : on quitte.
+                if (menuDifficulte() != RETOUR_MENU)
+                    return;
                 break;
 
             case 2:
@@ -134,24 +141,24 @@ int menuDifficulte(void)
         choix = lireChoix(1, 4);
 
         if (choix == -1)
-            return 0;
+            return DIFFICULTE_CHOISIE;
 
         switch (choix)
         {
             case 1:
                 printf("Facile \n\n");
-                return 0;
+                return DIFFICULTE_CHOISIE;
 
             case 2:
                 printf("Intermediaire \n\n");
-                return 0;
+                return DIFFICULTE_CHOISIE;
 
             case 3:
                 printf("Expert \n\n");
-                return 0;
+                return DIFFICULTE_CHOISIE;
 
             case 4:
-                return 1;
+                return RETOUR_MENU;
         }
     }
 }
