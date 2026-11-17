@@ -31,6 +31,37 @@ void genererGrille(int n, int grille[9][9]){
             }
 
 
+int demarrerChronometre(Sudoku *s) {
+    if (s == NULL) {return -1;}
+    // Evite de redemarrer un chronometre deja actif.
+    if (s->chronoActif) {return 1;}
+    s->debutChrono = time(NULL);
+    if (s->debutChrono == (time_t)-1) {return -1;}
+    s->chronoActif = true;
+    return 1;
+}
+
+
+int arreterChronometre(Sudoku *s) {
+    if (s == NULL) {return -1;}
+    if (!s->chronoActif) {return 1;}
+    time_t maintenant = time(NULL);
+    if (maintenant == (time_t)-1) {return -1;}
+    s->tempsEcoule += (long)difftime(maintenant, s->debutChrono);
+    s->chronoActif = false;
+    return 1;
+}
+
+
+long obtenirTempsEcoule(Sudoku *s) {
+    if (s == NULL) {return -1;}
+    if (!s->chronoActif) {return s->tempsEcoule;}
+    time_t maintenant = time(NULL);
+    if (maintenant == (time_t)-1) {return -1;}
+    return (s->tempsEcoule + (long)difftime(maintenant, s->debutChrono));
+}
+
+
 Sudoku* initSudoku(char* grille, int difficulte){
     Sudoku* s=malloc(sizeof(Sudoku));
     char cheminSol[100];
@@ -73,6 +104,12 @@ Sudoku* initSudoku(char* grille, int difficulte){
             if(s->grille[i][j]!=0){s->caseFixe[i][j]=1;}
             else{s->caseFixe[i][j]=0;}
         }
+    }
+    s->tempsEcoule = 0;
+    s->chronoActif = false;
+    if (demarrerChronometre(s) == -1) {
+            free(s);
+            return NULL;
     }
     return s;
 }
@@ -144,6 +181,9 @@ int sauvegarderSudoku(Sudoku *s, char *nomFichier) {
         }
         fprintf(fichier, "\n");
     }
+
+    // Sauvegarde du temps écoulé
+    fprintf(fichier, "\nTEMPS %ld\n", obtenirTempsEcoule(s));
     if (fclose(fichier) != 0) {
         return -1;
     }
@@ -222,9 +262,23 @@ Sudoku* initSave(char* nomFichier){
                 return NULL;
             }
         }
-    }
 
+    }
+    // Recuperation du temps sauvegarde
+        if (fscanf(save, "%31s %ld", mot1, &s->tempsEcoule) != 2 || strcmp(mot1, "TEMPS") != 0 || s->tempsEcoule < 0) {
+                printf("Erreur: Temps sauvegarde invalide\n");
+                fclose(save);
+                free(s);
+                return NULL;
+        }
     fclose(save);
+    // Le chronometre reprend a partir du temps sauvegarde
+    s->chronoActif = false;
+
+    if (demarrerChronometre(s) == -1) {
+            free(s);
+            return NULL;
+    }
 
     return s;
 }
