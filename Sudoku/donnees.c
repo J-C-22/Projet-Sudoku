@@ -7,7 +7,7 @@
 //return 0si probleme (en c 0=false)
 //return 1 si tout s'est bien passé(en c 1=true, de maniere générale seul 0=false; le rest est évalué à true)
 
-int genererGrille(int n, int grille[TAILLE][TAILLE]) {
+static int genererGrille(int n, int grille[TAILLE][TAILLE]) {
     if (grille == NULL || n < 0 || n > TAILLE * TAILLE) {return 0;}
     int positions[TAILLE * TAILLE];
     // Initialisation du tableau des positions.
@@ -27,7 +27,7 @@ int genererGrille(int n, int grille[TAILLE][TAILLE]) {
     return 1;
 }
 
-int demarrerChronometre(Sudoku *s) {
+static int demarrerChronometre(Sudoku *s) {
     if (s == NULL) {return 0;}
     // Évite de redémarrer un chronomètre déjà actif.
     if (s->chronoActif) {return 1;}
@@ -39,7 +39,7 @@ int demarrerChronometre(Sudoku *s) {
 }
 
 
-int arreterChronometre(Sudoku *s) {
+static int arreterChronometre(Sudoku *s) {
     if (s == NULL) {return 0;}
     // Si le chronomètre est déjà arrêté, rien à faire.
     if (!s->chronoActif) {return 1;}
@@ -53,7 +53,7 @@ int arreterChronometre(Sudoku *s) {
     return 1;
 }
 
-int obtenirTempsEcoule(Sudoku *s, long *temps) {
+static int obtenirTempsEcoule(Sudoku *s, long *temps) {
     if (s == NULL || temps == NULL){return 0;}
     // Si le chronomètre est arrêté, on récupère le temps accumulé.
     if (!s->chronoActif) {
@@ -141,7 +141,7 @@ int initSudoku(Sudoku**  s, char* grille, int difficulte)
     return 1;
 }
 
-int estCaseVide(Sudoku* s, int i, int j) {
+static int estCaseVide(Sudoku* s, int i, int j) {
     if (s == NULL || i < 0 || i >= TAILLE || j < 0 || j >= TAILLE) {return 0;}
     return (s->grille[i][j] == 0);
 }

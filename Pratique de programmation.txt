@@ -1,0 +1,24 @@
+# Conventions de programmation en C
+
+## 1. Organisation du code
+- Séparer les déclarations (`.h`) et les implémentations (`.c`).
+- Utiliser `static` pour les fonctions internes à un fichier (**encapsulation**).
+- Utiliser des gardes d'inclusion (`#ifndef`, `#define`, `#endif`).
+
+## 2. Gestion des fonctions
+- Retourner `1` en cas de succès et `0` en cas d'échec (**convention de retour**).
+- Utiliser des pointeurs en paramètres pour récupérer un résultat (**paramètres de sortie**).
+- Une fonction doit avoir une seule responsabilité (**principe de responsabilité unique**).
+
+## 3. Sécurité et mémoire
+- Vérifier les pointeurs (`NULL`) et les indices des tableaux.
+- Vérifier les retours des fonctions manipulant des fichiers.
+- Libérer la mémoire allouée avec `free` (**gestion manuelle de la mémoire**).
+
+## 4. Lisibilité
+- Choisir des noms explicites.
+- Commenter uniquement ce qui mérite une explication.
+- Initialiser les variables avant de les utiliser.
+
+## 5. Aléatoire
+- Appeler `srand(time(NULL))` une seule fois au début du programme.

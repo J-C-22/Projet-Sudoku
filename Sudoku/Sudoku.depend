@@ -32,7 +32,7 @@
 1794560100 c:\mes codes\projet sudoku\sudoku\affichage.h
 	"donnees.h"
 
-1794930383 c:\mes codes\projet sudoku\sudoku\donnees.h
+1794932529 c:\mes codes\projet sudoku\sudoku\donnees.h
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
@@ -42,7 +42,7 @@
 1794930383 source:c:\mes codes\projet sudoku\sudoku\donnees.c
 	"donnees.h"
 
-1794930279 source:c:\mes codes\projet sudoku\sudoku\main.c
+1794931014 source:c:\mes codes\projet sudoku\sudoku\main.c
 	"donnees.h"
 	"saisie.h"
 	"affichage.h"

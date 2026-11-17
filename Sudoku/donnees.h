@@ -26,17 +26,7 @@ typedef struct sudoku {
     bool chronoActif;       // Indique si le chrono tourne
 }Sudoku;
 
-int genererGrille(int n, int grille[TAILLE][TAILLE]); //B
-
-int demarrerChronometre(Sudoku *s);//B
-
-int arreterChronometre(Sudoku *s);//B
-
-int obtenirTempsEcoule(Sudoku *s, long *temps);//B
-
 int initSudoku(Sudoku** s, char* grille, int difficulte);//B
-
-int estCaseVide(Sudoku* s, int i, int j);//B
 
 int obtenirValeur(Sudoku* s, int i, int j, int *valeur);//B
 
