@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-
+#include <time.h>
 //fgdfbsbsfb
 //Pour que l'importation successive du module ne duplique pas tout
 #ifndef DONNEES_H
@@ -19,11 +19,21 @@
 //Que pour les fonction qui fonctionne q'avec effet de bord: B à coté de la fonction
 
 typedef struct sudoku {
-int grille[TAILLE][TAILLE];
-int caseFixe[TAILLE][TAILLE];//surement à supprimer, je ne vois plus l'intéret
-int solution[TAILLE][TAILLE];
+    int grille[TAILLE][TAILLE];
+    int caseFixe[TAILLE][TAILLE];//surement à supprimer, je ne vois plus l'intéret
+    int solution[TAILLE][TAILLE];
+    long tempsEcoule;       // Temps accumulé en secondes
+    time_t debutChrono;     // Instant du dernier démarrage
+    bool chronoActif;       // Indique si le chrono tourne
 }Sudoku;
+
 void genererGrille(int n, int grille[9][9]); //B
+
+int demarrerChronometre(Sudoku *s);
+
+int arreterChronometre(Sudoku *s);
+
+long obtenirTempsEcoule(Sudoku *s);
 
 Sudoku* initSudoku(char* grille, int difficulte);//B
 
