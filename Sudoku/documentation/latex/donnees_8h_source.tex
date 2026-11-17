@@ -1,0 +1,45 @@
+\doxysection{donnees.\+h}
+\hypertarget{donnees_8h_source}{}\label{donnees_8h_source}\doxymbox{\hyperlink{donnees_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ DONNEES\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ DONNEES\_H}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ TAILLE\ 9}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ FACILE\ 35}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ MOYEN\ 45}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ DIFFICILE\ 53}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{structsudoku}{sudoku}}\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{structsudoku_a6b436d431c582453807fd569567e48b6}{grille}}[\doxymbox{\hyperlink{donnees_8h_a7b29335add3a553ed85d0e3ace85629c}{TAILLE}}][\doxymbox{\hyperlink{donnees_8h_a7b29335add3a553ed85d0e3ace85629c}{TAILLE}}];\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{structsudoku_a8ec629b21754f9f176ec8b027f01a118}{solution}}[\doxymbox{\hyperlink{donnees_8h_a7b29335add3a553ed85d0e3ace85629c}{TAILLE}}][\doxymbox{\hyperlink{donnees_8h_a7b29335add3a553ed85d0e3ace85629c}{TAILLE}}];\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{long}\ \doxymbox{\hyperlink{structsudoku_a20460c8bc8403a8a66144e43a74d0386}{tempsEcoule}};\ }
+\DoxyCodeLine{00046\ \ \ \ \ time\_t\ \doxymbox{\hyperlink{structsudoku_a136d4fdcb05dc631a56a492da1ced4e9}{debutChrono}};\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{structsudoku_aa2a306942c5f0a5235d83d7c8c230538}{chronoActif}};\ }
+\DoxyCodeLine{00048\ \}\ \doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00060\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{donnees_8c_aaaa000197273eba18ed2e6713b9b9ff2}{obtenirTempsEcoule}}(\doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}}\ *s,\ \textcolor{keywordtype}{long}\ *temps);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00073\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{donnees_8c_a2afd36b2b2e723c6075c6c1b3d3ee7e2}{initSudoku}}(\doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}}**\ s,\ \textcolor{keywordtype}{char}*\ grille,\ \textcolor{keywordtype}{int}\ difficulte);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00084\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{donnees_8c_af6219115996916d1d7eae545a6951e05}{obtenirValeur}}(\doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}}*\ s,\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j,\ \textcolor{keywordtype}{int}\ *valeur);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00098\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{donnees_8c_a8056309350192fda502a8420b517ebb3}{placerChiffre}}(\doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}}*\ s,\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j,\ \textcolor{keywordtype}{int}\ x);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00110\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{donnees_8c_af656be6159ede1dd7f7dbb9dbb7ccdad}{sauvegarderSudoku}}(\doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}}*\ s,\ \textcolor{keywordtype}{char}*\ nomFichier);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00122\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{donnees_8c_aa518d15f19076ff04e5e0c1cd5b218e2}{initSave}}(\doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}}**\ s,\ \textcolor{keywordtype}{char}*\ nomFichier);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

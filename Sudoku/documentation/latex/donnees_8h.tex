@@ -1,0 +1,258 @@
+\doxysection{donnees.\+h File Reference}
+\hypertarget{donnees_8h}{}\label{donnees_8h}\index{donnees.h@{donnees.h}}
+
+
+Gestion des données et des opérations du \doxylink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}.  
+
+
+{\ttfamily \+\#include $<$stdio.\+h$>$}\newline
+{\ttfamily \+\#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \+\#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \+\#include $<$string.\+h$>$}\newline
+{\ttfamily \+\#include $<$time.\+h$>$}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{structsudoku}{sudoku}}
+\begin{DoxyCompactList}\small\item\em Structure contenant les données d\textquotesingle{}une partie de \doxylink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{donnees_8h_a7b29335add3a553ed85d0e3ace85629c}{TAILLE}}~9
+\begin{DoxyCompactList}\small\item\em Taille d\textquotesingle{}un côté de la grille de \doxylink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{donnees_8h_ae8a6ea76e77fc932e204d9b2098fc43d}{FACILE}}~35
+\begin{DoxyCompactList}\small\item\em Nombre de cases à vider pour une grille de difficulté facile. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{donnees_8h_a64e404cf60c6b192dacc09e00f56751b}{MOYEN}}~45
+\begin{DoxyCompactList}\small\item\em Nombre de cases à vider pour une grille de difficulté moyenne. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{donnees_8h_a0d7c79f8aed3b4fa33a592c007807808}{DIFFICILE}}~53
+\begin{DoxyCompactList}\small\item\em Nombre de cases à vider pour une grille de difficulté difficile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \doxymbox{\hyperlink{structsudoku}{sudoku}} \doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}}
+\begin{DoxyCompactList}\small\item\em Structure contenant les données d\textquotesingle{}une partie de \doxylink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{donnees_8h_aaaa000197273eba18ed2e6713b9b9ff2}{obtenir\+Temps\+Ecoule}} (\doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}} \texorpdfstring{$\ast$}{*}s, long \texorpdfstring{$\ast$}{*}temps)
+\begin{DoxyCompactList}\small\item\em Récupère le temps écoulé depuis le début de la partie. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{donnees_8h_a2afd36b2b2e723c6075c6c1b3d3ee7e2}{init\+Sudoku}} (\doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}s, char \texorpdfstring{$\ast$}{*}grille, int difficulte)
+\begin{DoxyCompactList}\small\item\em Initialise une nouvelle partie de \doxylink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{donnees_8h_af6219115996916d1d7eae545a6951e05}{obtenir\+Valeur}} (\doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}} \texorpdfstring{$\ast$}{*}s, int i, int j, int \texorpdfstring{$\ast$}{*}valeur)
+\begin{DoxyCompactList}\small\item\em Récupère la valeur d\textquotesingle{}une case de la grille. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{donnees_8h_a8056309350192fda502a8420b517ebb3}{placer\+Chiffre}} (\doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}} \texorpdfstring{$\ast$}{*}s, int i, int j, int x)
+\begin{DoxyCompactList}\small\item\em Place un chiffre dans une case vide de la grille. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{donnees_8h_af656be6159ede1dd7f7dbb9dbb7ccdad}{sauvegarder\+Sudoku}} (\doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}} \texorpdfstring{$\ast$}{*}s, char \texorpdfstring{$\ast$}{*}nom\+Fichier)
+\begin{DoxyCompactList}\small\item\em Sauvegarde une partie de \doxylink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku} dans un fichier. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{donnees_8h_aa518d15f19076ff04e5e0c1cd5b218e2}{init\+Save}} (\doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}s, char \texorpdfstring{$\ast$}{*}nom\+Fichier)
+\begin{DoxyCompactList}\small\item\em Initialise une partie à partir d\textquotesingle{}un fichier de sauvegarde. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Gestion des données et des opérations du \doxylink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}. 
+
+Ce module permet d\textquotesingle{}initialiser une partie, de consulter et modifier la grille, de gérer le chronomètre et de sauvegarder une partie. 
+
+\label{donnees_8h_doc-define-members}
+\Hypertarget{donnees_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{donnees_8h_a0d7c79f8aed3b4fa33a592c007807808}\index{donnees.h@{donnees.h}!DIFFICILE@{DIFFICILE}}
+\index{DIFFICILE@{DIFFICILE}!donnees.h@{donnees.h}}
+\doxysubsubsection{\texorpdfstring{DIFFICILE}{DIFFICILE}}
+{\footnotesize\ttfamily \label{donnees_8h_a0d7c79f8aed3b4fa33a592c007807808} 
+\+\#define DIFFICILE~53}
+
+
+
+Nombre de cases à vider pour une grille de difficulté difficile. 
+
+\Hypertarget{donnees_8h_ae8a6ea76e77fc932e204d9b2098fc43d}\index{donnees.h@{donnees.h}!FACILE@{FACILE}}
+\index{FACILE@{FACILE}!donnees.h@{donnees.h}}
+\doxysubsubsection{\texorpdfstring{FACILE}{FACILE}}
+{\footnotesize\ttfamily \label{donnees_8h_ae8a6ea76e77fc932e204d9b2098fc43d} 
+\+\#define FACILE~35}
+
+
+
+Nombre de cases à vider pour une grille de difficulté facile. 
+
+\Hypertarget{donnees_8h_a64e404cf60c6b192dacc09e00f56751b}\index{donnees.h@{donnees.h}!MOYEN@{MOYEN}}
+\index{MOYEN@{MOYEN}!donnees.h@{donnees.h}}
+\doxysubsubsection{\texorpdfstring{MOYEN}{MOYEN}}
+{\footnotesize\ttfamily \label{donnees_8h_a64e404cf60c6b192dacc09e00f56751b} 
+\+\#define MOYEN~45}
+
+
+
+Nombre de cases à vider pour une grille de difficulté moyenne. 
+
+\Hypertarget{donnees_8h_a7b29335add3a553ed85d0e3ace85629c}\index{donnees.h@{donnees.h}!TAILLE@{TAILLE}}
+\index{TAILLE@{TAILLE}!donnees.h@{donnees.h}}
+\doxysubsubsection{\texorpdfstring{TAILLE}{TAILLE}}
+{\footnotesize\ttfamily \label{donnees_8h_a7b29335add3a553ed85d0e3ace85629c} 
+\+\#define TAILLE~9}
+
+
+
+Taille d\textquotesingle{}un côté de la grille de \doxylink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}. 
+
+
+
+\label{donnees_8h_doc-typedef-members}
+\Hypertarget{donnees_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}\index{donnees.h@{donnees.h}!Sudoku@{Sudoku}}
+\index{Sudoku@{Sudoku}!donnees.h@{donnees.h}}
+\doxysubsubsection{\texorpdfstring{Sudoku}{Sudoku}}
+{\footnotesize\ttfamily \label{donnees_8h_a81bcadadbafeebeef2598078e8ce333e} 
+typedef struct \doxymbox{\hyperlink{structsudoku}{sudoku}} \doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}}}
+
+
+
+Structure contenant les données d\textquotesingle{}une partie de \doxylink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}. 
+
+
+
+\label{donnees_8h_doc-func-members}
+\Hypertarget{donnees_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{donnees_8h_aa518d15f19076ff04e5e0c1cd5b218e2}\index{donnees.h@{donnees.h}!initSave@{initSave}}
+\index{initSave@{initSave}!donnees.h@{donnees.h}}
+\doxysubsubsection{\texorpdfstring{initSave()}{initSave()}}
+{\footnotesize\ttfamily \label{donnees_8h_aa518d15f19076ff04e5e0c1cd5b218e2} 
+int init\+Save (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{s}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{nom\+Fichier}{}\end{DoxyParamCaption})}
+
+
+
+Initialise une partie à partir d\textquotesingle{}un fichier de sauvegarde. 
+
+Charge la grille, sa solution et le temps déjà écoulé, puis redémarre le chronomètre.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Adresse du pointeur qui recevra la partie restaurée. \\
+\hline
+{\em nom\+Fichier} & Nom du fichier de sauvegarde. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si le chargement a réussi, 0 en cas d\textquotesingle{}erreur. 
+\end{DoxyReturn}
+\Hypertarget{donnees_8h_a2afd36b2b2e723c6075c6c1b3d3ee7e2}\index{donnees.h@{donnees.h}!initSudoku@{initSudoku}}
+\index{initSudoku@{initSudoku}!donnees.h@{donnees.h}}
+\doxysubsubsection{\texorpdfstring{initSudoku()}{initSudoku()}}
+{\footnotesize\ttfamily \label{donnees_8h_a2afd36b2b2e723c6075c6c1b3d3ee7e2} 
+int init\+Sudoku (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{s}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{grille}{, }\item[{int}]{difficulte}{}\end{DoxyParamCaption})}
+
+
+
+Initialise une nouvelle partie de \doxylink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}. 
+
+Charge la solution depuis un fichier, construit la grille de jeu en retirant un certain nombre de cases, puis démarre le chronomètre.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Adresse du pointeur qui recevra la partie créée. \\
+\hline
+{\em grille} & Nom du fichier contenant la solution. \\
+\hline
+{\em difficulte} & Nombre de cases à vider dans la grille. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si l\textquotesingle{}initialisation a réussi, 0 en cas d\textquotesingle{}erreur. 
+\end{DoxyReturn}
+\Hypertarget{donnees_8h_aaaa000197273eba18ed2e6713b9b9ff2}\index{donnees.h@{donnees.h}!obtenirTempsEcoule@{obtenirTempsEcoule}}
+\index{obtenirTempsEcoule@{obtenirTempsEcoule}!donnees.h@{donnees.h}}
+\doxysubsubsection{\texorpdfstring{obtenirTempsEcoule()}{obtenirTempsEcoule()}}
+{\footnotesize\ttfamily \label{donnees_8h_aaaa000197273eba18ed2e6713b9b9ff2} 
+int obtenir\+Temps\+Ecoule (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}} \texorpdfstring{$\ast$}{*}}]{s}{, }\item[{long \texorpdfstring{$\ast$}{*}}]{temps}{}\end{DoxyParamCaption})}
+
+
+
+Récupère le temps écoulé depuis le début de la partie. 
+
+Si le chronomètre est actif, le temps écoulé depuis son dernier démarrage est ajouté au temps déjà accumulé, sans arrêter le chronomètre.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Pointeur vers la partie de \doxylink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}. \\
+\hline
+{\em temps} & Adresse de la variable qui recevra le temps écoulé, en secondes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si la récupération a réussi, 0 en cas d\textquotesingle{}erreur. 
+\end{DoxyReturn}
+\Hypertarget{donnees_8h_af6219115996916d1d7eae545a6951e05}\index{donnees.h@{donnees.h}!obtenirValeur@{obtenirValeur}}
+\index{obtenirValeur@{obtenirValeur}!donnees.h@{donnees.h}}
+\doxysubsubsection{\texorpdfstring{obtenirValeur()}{obtenirValeur()}}
+{\footnotesize\ttfamily \label{donnees_8h_af6219115996916d1d7eae545a6951e05} 
+int obtenir\+Valeur (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}} \texorpdfstring{$\ast$}{*}}]{s}{, }\item[{int}]{i}{, }\item[{int}]{j}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{valeur}{}\end{DoxyParamCaption})}
+
+
+
+Récupère la valeur d\textquotesingle{}une case de la grille. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Pointeur vers la partie de \doxylink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}. \\
+\hline
+{\em i} & Indice de la ligne. \\
+\hline
+{\em j} & Indice de la colonne. \\
+\hline
+{\em valeur} & Adresse de la variable qui recevra la valeur de la case. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si la récupération a réussi, 0 en cas d\textquotesingle{}erreur. 
+\end{DoxyReturn}
+\Hypertarget{donnees_8h_a8056309350192fda502a8420b517ebb3}\index{donnees.h@{donnees.h}!placerChiffre@{placerChiffre}}
+\index{placerChiffre@{placerChiffre}!donnees.h@{donnees.h}}
+\doxysubsubsection{\texorpdfstring{placerChiffre()}{placerChiffre()}}
+{\footnotesize\ttfamily \label{donnees_8h_a8056309350192fda502a8420b517ebb3} 
+int placer\+Chiffre (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}} \texorpdfstring{$\ast$}{*}}]{s}{, }\item[{int}]{i}{, }\item[{int}]{j}{, }\item[{int}]{x}{}\end{DoxyParamCaption})}
+
+
+
+Place un chiffre dans une case vide de la grille. 
+
+Le chiffre est placé uniquement s\textquotesingle{}il correspond à la valeur attendue dans la solution.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Pointeur vers la partie de \doxylink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}. \\
+\hline
+{\em i} & Indice de la ligne. \\
+\hline
+{\em j} & Indice de la colonne. \\
+\hline
+{\em x} & Chiffre à placer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si le chiffre a été placé, 0 en cas d\textquotesingle{}erreur. 
+\end{DoxyReturn}
+\Hypertarget{donnees_8h_af656be6159ede1dd7f7dbb9dbb7ccdad}\index{donnees.h@{donnees.h}!sauvegarderSudoku@{sauvegarderSudoku}}
+\index{sauvegarderSudoku@{sauvegarderSudoku}!donnees.h@{donnees.h}}
+\doxysubsubsection{\texorpdfstring{sauvegarderSudoku()}{sauvegarderSudoku()}}
+{\footnotesize\ttfamily \label{donnees_8h_af656be6159ede1dd7f7dbb9dbb7ccdad} 
+int sauvegarder\+Sudoku (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku}} \texorpdfstring{$\ast$}{*}}]{s}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{nom\+Fichier}{}\end{DoxyParamCaption})}
+
+
+
+Sauvegarde une partie de \doxylink{donnees_8h_a81bcadadbafeebeef2598078e8ce333e}{Sudoku} dans un fichier. 
+
+La sauvegarde contient les données nécessaires pour reprendre la partie ultérieurement, notamment le temps écoulé.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Pointeur vers la partie à sauvegarder. \\
+\hline
+{\em nom\+Fichier} & Nom du fichier de sauvegarde. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si la sauvegarde a réussi, 0 en cas d\textquotesingle{}erreur. 
+\end{DoxyReturn}
