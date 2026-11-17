@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 //fgdfbsbsfb
 //Pour que l'importation successive du module ne duplique pas tout
@@ -19,7 +20,7 @@
 
 typedef struct sudoku {
 int grille[TAILLE][TAILLE];
-int caseFixe[TAILLE][TAILLE];
+int caseFixe[TAILLE][TAILLE];//surement à supprimer, je ne vois plus l'intéret
 int solution[TAILLE][TAILLE];
 }Sudoku;
 void genererGrille(int n, int grille[9][9]); //B
@@ -37,5 +38,7 @@ int placerChiffre(Sudoku* s,int i, int j, int x);//B
 int supprimerChiffre(Sudoku* s,int i, int j);//B
 
 int sauvegarderSudoku(Sudoku *s, char *nomFichier);//B
+
+Sudoku* initSave(char* nomFichier); //B
 
 #endif

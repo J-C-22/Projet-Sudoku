@@ -63,11 +63,7 @@ void menu()
 
     while (1)
     {
-        printf("MENU PRINCIPAL \n\n");
-        printf("1  Nouvelle partie \n");
-        printf("2  Charger une partie sauvegardee \n");
-        printf("3  Aide \n");
-        printf("4  Quitter \n\n");
+        afficherMenu();
 
         // Récupération du choix avec vérification de la saisie.
         printf("Votre choix : ");
@@ -106,12 +102,8 @@ void nouvellePartie()
 
     while (1)
     {
-        printf("NOUVELLE PARTIE \n\n");
-        printf("1  Facile \n");
-        printf("2  Intermediaire \n");
-        printf("3  Expert \n");
-        printf("4  Retour au menu \n\n");
 
+        afficherDifficulte();
         // Récupération du choix de difficulté.
         printf("Votre choix : ");
         choix = lireChoix();
@@ -140,9 +132,4 @@ void nouvellePartie()
                 break;
         }
     }
-}
-
-void main()
-{
-menu();
 }

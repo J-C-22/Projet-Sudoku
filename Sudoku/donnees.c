@@ -1,10 +1,12 @@
 #include "donnees.h"
 
-//hvgdqfvbqdbvhqdbfvqndvjn
+//Pratique de programmation que j'essaie de respecter:
+//--> Ne pas renvoyer le résultat mais le demander en argument pour le modifier par effet de bord
+//--> Renvoyer des valeur bouléenne qui indique si l'exécution c'est bien passée
 
 //Convention:
-//return -1 si probl�me
-//return 1 si tout s'est bien pass�
+//return 0si probleme (en c 0=false)
+//return 1 si tout s'est bien passé(en c 1=true, de maniere générale seul 0=false; le rest est évalué à true)
 
 #include <stdlib.h>
 
@@ -82,8 +84,8 @@ int obtenirValeur(Sudoku* s,int i, int j){
 
 
 bool estCaseVide(Sudoku* s,int i, int j){
-    if (obtenirValeur(s, i, j)==0){return false;}
-    else{return true;}
+    if (obtenirValeur(s, i, j)==0){return true;}
+    else{return false;}
 }
 
 
@@ -146,5 +148,84 @@ int sauvegarderSudoku(Sudoku *s, char *nomFichier) {
         return -1;
     }
     return 1;
+}
+
+Sudoku* initSave(char* nomFichier){
+    Sudoku* s = malloc(sizeof(Sudoku));
+    if(s == NULL){
+        printf("Erreur allocation memoire\n");
+        return NULL;
+    }
+    char chemin[256];
+    char mot1[32], mot2[32];
+    snprintf(chemin, sizeof(chemin), "grilles/saves/%s", nomFichier);
+    FILE* save = fopen(chemin, "r");
+    if(save == NULL){
+            printf("Erreur: Impossible d'ouvrir la sauvegarde\n");
+            free(s);
+            return NULL;
+            }
+
+    // On recupere la matrice grille
+    if(fscanf(save, "%31s %31s", mot1, mot2) != 2 || strcmp(mot1, "MATRICE") != 0 || strcmp(mot2, "GRILLE") != 0){
+            printf("Erreur: Format de sauvegarde incorrect\n");
+            fclose(save);
+            free(s);
+            return NULL;
+            }
+    for(int i = 0; i < TAILLE; i++){
+            for(int j = 0; j < TAILLE; j++){
+                    if(fscanf(save, "%d", &s->grille[i][j]) != 1 || s->grille[i][j] < 0 || s->grille[i][j] > 9){
+                           printf("Erreur: Grille incomplete ou invalide\n");
+                           fclose(save);
+                           free(s);
+                           return NULL;
+                           }
+                           }
+                           }
+
+    // On recupere la matrice caseFixe
+    if(fscanf(save, "%31s %31s", mot1, mot2) != 2 || strcmp(mot1, "MATRICE") != 0 || strcmp(mot2, "CASEFIXE") != 0){
+            printf("Erreur: Format caseFixe incorrect\n");
+            fclose(save);
+            free(s);
+            return NULL;
+            }
+    for(int i = 0; i < TAILLE; i++){
+            for(int j = 0; j < TAILLE; j++){
+                if(fscanf(save, "%d", &s->caseFixe[i][j]) != 1 || (s->caseFixe[i][j] != 0 && s->caseFixe[i][j] != 1)){
+                    printf("Erreur: Matrice caseFixe invalide\n");
+                    fclose(save);
+                    free(s);
+                    return NULL;
+                    }
+                    }
+                    }
+
+    // On recupere la matrice solution
+    if(fscanf(save, "%31s %31s", mot1, mot2) != 2 || strcmp(mot1, "MATRICE") != 0 || strcmp(mot2, "SOLUTION") != 0){
+        printf("Erreur: Format solution incorrect\n");
+        fclose(save);
+        free(s);
+        return NULL;
+    }
+
+    for(int i = 0; i < TAILLE; i++){
+        for(int j = 0; j < TAILLE; j++){
+
+            if(fscanf(save, "%d", &s->solution[i][j]) != 1 ||
+               s->solution[i][j] < 1 || s->solution[i][j] > 9){
+
+                printf("Erreur: Solution incomplete ou invalide\n");
+                fclose(save);
+                free(s);
+                return NULL;
+            }
+        }
+    }
+
+    fclose(save);
+
+    return s;
 }
 

@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <limits.h>
-
+#include "affichage.h"
 //Pour que l'importation successive du module ne duplique pas tout
 #ifndef SAISIE_H
 #define SAISIE_H
