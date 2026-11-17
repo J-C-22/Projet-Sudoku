@@ -77,7 +77,8 @@ int lireChoix(int min, int max)
 
         if (!invalide)
             return choix;
-
+        
+        afficherErreur();
         printf("Saisie invalide ! Entrez un nombre entre %d et %d : ", min, max);
     }
 }
