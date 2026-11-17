@@ -53,7 +53,7 @@ static int arreterChronometre(Sudoku *s) {
     return 1;
 }
 
-static int obtenirTempsEcoule(Sudoku *s, long *temps) {
+int obtenirTempsEcoule(Sudoku *s, long *temps){
     if (s == NULL || temps == NULL){return 0;}
     // Si le chronomètre est arrêté, on récupère le temps accumulé.
     if (!s->chronoActif) {
