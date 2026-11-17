@@ -9,7 +9,7 @@
 
 void menu(); //Affiche le menu principal du Sudoku et permet à l'utilisateur de sélectionner une fonctionnalité.
 
-void nouvellePartie(); //Affiche le menu de sélection de difficulté d'une nouvelle partie.
+int menuDifficulte(); //Affiche le menu de sélection de difficulté d'une nouvelle partie.
 
 int lireChoix(); // Fonction permettant de sécuriser la saisie utilisateur. Retourne l'entier saisi si la saisie est valide et retourne -1 si la lecture échoue.
 #endif

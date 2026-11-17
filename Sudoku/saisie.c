@@ -99,7 +99,7 @@ void menu(void)
         switch (choix)
         {
             case 1:
-                nouvellePartie();
+                menuDifficulte();
                 break;
 
             case 2:
@@ -122,45 +122,36 @@ void menu(void)
     }
 }
 
-void nouvellePartie(void)
+int menuDifficulte(void)
 {
     int choix;
 
     while (1)
     {
-
         afficherDifficulte();
-        // Récupération du choix de difficulté.
+
         printf("Votre choix : ");
         choix = lireChoix(1, 4);
 
-        // Flux d'entrée fermé : retour au menu (qui quittera aussi).
         if (choix == -1)
-            return;
+            return 0;
 
-        // Exécution de l'action correspondant au choix.
         switch (choix)
         {
             case 1:
                 printf("Facile \n\n");
-                return;
+                return 0;
 
             case 2:
                 printf("Intermediaire \n\n");
-                return;
+                return 0;
 
             case 3:
                 printf("Expert \n\n");
-                return;
+                return 0;
 
             case 4:
-                return;
-
-            default:
-                // Ne devrait plus arriver : lireChoix filtre déjà 1 à 4.
-                printf("Choix invalide ! \n\n");
-                break;
+                return 1;
         }
     }
 }
-
