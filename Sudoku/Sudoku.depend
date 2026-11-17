@@ -26,3 +26,41 @@
 1793720336 c:\mes codes\sudoku\affichage.h
 	"donnees.h"
 
+1793817130 source:c:\mes codes\projet sudoku\sudoku\affichage.c
+	"affichage.h"
+
+1794560100 c:\mes codes\projet sudoku\sudoku\affichage.h
+	"donnees.h"
+
+1794908877 c:\mes codes\projet sudoku\sudoku\donnees.h
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
+	<time.h>
+
+1794908846 source:c:\mes codes\projet sudoku\sudoku\donnees.c
+	"donnees.h"
+	<stdlib.h>
+	<stdlib.h>
+	<stdlib.h>
+
+1794908877 source:c:\mes codes\projet sudoku\sudoku\main.c
+	"donnees.h"
+	"saisie.h"
+	"affichage.h"
+
+1794905671 c:\mes codes\projet sudoku\sudoku\saisie.h
+	<stdio.h>
+	<stdio.h>
+	<ctype.h>
+	<limits.h>
+	"affichage.h"
+
+1794905671 source:c:\mes codes\projet sudoku\sudoku\saisie.c
+	"saisie.h"
+	<stdio.h>
+	<ctype.h>
+	<limits.h>
+	<string.h>
+
