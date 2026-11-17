@@ -13,3 +13,5 @@ void nouvellePartie(); //Affiche le menu de sélection de difficulté d'une nouv
 
 int lireChoix(); // Fonction permettant de sécuriser la saisie utilisateur. Retourne l'entier saisi si la saisie est valide et retourne -1 si la lecture échoue.
 #endif
+
+
