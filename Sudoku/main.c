@@ -19,6 +19,10 @@ int main() {
             placerChiffre(s, i, j, s->solution[i][j]);
         }
     }
+    // Deux mauvaises réponses
+    placerChiffre(s, 0, 0, 1);
+    placerChiffre(s, 0, 0, 1);
+    printf("Nombre d'erreurs : %d\n", s->erreurs);
     // Simulation d'une partie.
     long temps;
     int heures;
@@ -36,6 +40,7 @@ int main() {
     minutes = (temps % 3600) / 60;
     secondes = temps % 60;
     printf("Temps : %02d:%02d:%02d\n", heures, minutes, secondes);
+    printf("Nombre d'erreurs : %d\n", s->erreurs);
     // Sauvegarde de la partie.
     if (!sauvegarderSudoku(s, "save1.txt")) {
         printf("Erreur lors de la sauvegarde.\n");
@@ -62,6 +67,7 @@ int main() {
     minutes = (temps % 3600) / 60;
     secondes = temps % 60;
     printf("Temps : %02d:%02d:%02d\n", heures, minutes, secondes);
+    printf("Nombre d'erreurs : %d\n", s->erreurs);
     // Libération de la mémoire.
     free(s);
     free(s2);
