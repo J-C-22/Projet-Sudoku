@@ -10,6 +10,12 @@
 #define DIFFICULTE_CHOISIE 0
 #define RETOUR_MENU        1
 
+// Valeurs de retour des fonctions de saisie de la partie.
+#define SAISIE_EOF        -1   // flux d'entrée fermé
+#define SAISIE_RETOUR      0   // l'utilisateur a saisi 0 : on revient en arrière
+#define SAISIE_OK          1   // saisie complète validée
+
+
 int lireChoix(int min, int max)
 {
     char saisie[100];
@@ -77,8 +83,7 @@ int lireChoix(int min, int max)
 
         if (!invalide)
             return choix;
-        
-        afficherErreur();
+
         printf("Saisie invalide ! Entrez un nombre entre %d et %d : ", min, max);
     }
 }
@@ -93,7 +98,7 @@ void menu(void)
         afficherMenu();
 
         // Récupération du choix avec vérification de la saisie.
-        printf("Votre choix : ");
+        printf("\nVotre choix : ");
         choix = lireChoix(1, 4);
 
         // Flux d'entrée fermé : on quitte pour éviter une boucle infinie.
@@ -130,9 +135,29 @@ void menu(void)
     }
 }
 
+// Lance une partie de la difficulté donnée.
+// Renvoie 1 si la partie a pu être lancée, 0 si la grille n'a pas pu être chargée.
+static int lancerPartie(int difficulte)
+{
+    Sudoku *s = NULL;
+
+    if (!initSudoku(&s, "grille1.txt", difficulte))
+    {
+        afficherErreur();
+        printf("Impossible de charger la grille.\n\n");
+        return 0;
+    }
+
+    saisiePartie(s);
+
+    free(s);
+    return 1;
+}
+
 int menuDifficulte(void)
 {
     int choix;
+    int difficulte;
 
     while (1)
     {
@@ -147,19 +172,186 @@ int menuDifficulte(void)
         switch (choix)
         {
             case 1:
-                printf("Facile \n\n");
-                return DIFFICULTE_CHOISIE;
+                difficulte = FACILE;
+                break;
 
             case 2:
-                printf("Intermediaire \n\n");
-                return DIFFICULTE_CHOISIE;
+                difficulte = MOYEN;
+                break;
 
             case 3:
-                printf("Expert \n\n");
-                return DIFFICULTE_CHOISIE;
+                difficulte = DIFFICILE;
+                break;
 
-            case 4:
+            default:
                 return RETOUR_MENU;
+        }
+
+        // Partie lancée (et terminée) : on quitte. Sinon on réaffiche le menu.
+        if (lancerPartie(difficulte))
+            return DIFFICULTE_CHOISIE;
+    }
+}
+
+// Demande le chiffre à placer (1 à 9).
+// Renvoie SAISIE_OK, SAISIE_RETOUR (0 saisi) ou SAISIE_EOF.
+int saisieChiffre(int *chiffre)
+{
+    int choix;
+
+    printf("Chiffre (1-9, 0 pour revenir a la colonne) : ");
+    choix = lireChoix(0, 9);
+
+    if (choix == -1)
+        return SAISIE_EOF;
+
+    if (choix == 0)
+        return SAISIE_RETOUR;
+
+    *chiffre = choix;
+    return SAISIE_OK;
+}
+
+// Demande la colonne (1 à 9), puis le chiffre.
+// Renvoie SAISIE_OK, SAISIE_RETOUR (0 saisi) ou SAISIE_EOF.
+int saisieColonne(int *colonne, int *chiffre)
+{
+    int choix;
+    int resultat;
+
+    while (1)
+    {
+        printf("Colonne (1-9, 0 pour revenir a la ligne) : ");
+        choix = lireChoix(0, 9);
+
+        if (choix == -1)
+            return SAISIE_EOF;
+
+        if (choix == 0)
+            return SAISIE_RETOUR;
+
+        *colonne = choix;
+
+        resultat = saisieChiffre(chiffre);
+
+        // OK ou EOF : on remonte l'information.
+        // RETOUR : on reste ici et on redemande la colonne.
+        if (resultat != SAISIE_RETOUR)
+            return resultat;
+    }
+}
+
+// Demande la ligne (1 à 9), puis la colonne.
+// Renvoie SAISIE_OK, SAISIE_RETOUR (0 saisi) ou SAISIE_EOF.
+int saisieLigne(int *ligne, int *colonne, int *chiffre)
+{
+    int choix;
+    int resultat;
+
+    while (1)
+    {
+        printf("Ligne (1-9, 0 pour revenir a la partie) : ");
+        choix = lireChoix(0, 9);
+
+        if (choix == -1)
+            return SAISIE_EOF;
+
+        if (choix == 0)
+            return SAISIE_RETOUR;
+
+        *ligne = choix;
+
+        resultat = saisieColonne(colonne, chiffre);
+
+        // OK ou EOF : on remonte l'information.
+        // RETOUR : on reste ici et on redemande la ligne.
+        if (resultat != SAISIE_RETOUR)
+            return resultat;
+    }
+}
+
+// Menu de fin de partie (à compléter : proposer de sauvegarder).
+void finDePartie(void)
+{
+    printf("Fin de partie \n\n");
+}
+
+// Renvoie 1 si toutes les cases de la grille sont remplies, 0 sinon.
+static int grilleComplete(Sudoku *s)
+{
+    int valeur;
+    int i;
+    int j;
+
+    for (i = 0; i < TAILLE; i++)
+    {
+        for (j = 0; j < TAILLE; j++)
+        {
+            if (!obtenirValeur(s, i, j, &valeur) || valeur == 0)
+                return 0;
+        }
+    }
+    return 1;
+}
+
+// Déroulement d'une partie : 0 = fin de partie, 1 = saisir un chiffre.
+// Renvoie SAISIE_RETOUR (partie terminée) ou SAISIE_EOF (flux fermé).
+int saisiePartie(Sudoku *s)
+{
+    int choix;
+    int ligne = 0;
+    int colonne = 0;
+    int chiffre = 0;
+    int valeur = 0;
+    int resultat;
+
+    if (s == NULL)
+        return SAISIE_RETOUR;
+
+    while (1)
+    {
+        printf("\n");
+        afficherPartie(s);
+        printf("\n\n");
+
+        if (grilleComplete(s))
+        {
+            printf("Bravo, la grille est terminee !\n");
+            finDePartie();
+            return SAISIE_RETOUR;
+        }
+
+        printf("0 : Fin de partie / 1 : Saisir un chiffre\n");
+        printf("Votre choix : ");
+
+        choix = lireChoix(0, 1);
+
+        if (choix == -1)
+            return SAISIE_EOF;
+
+        if (choix == 0)
+        {
+            finDePartie();
+            return SAISIE_RETOUR;
+        }
+
+        // choix == 1 : saisie ligne -> colonne -> chiffre.
+        resultat = saisieLigne(&ligne, &colonne, &chiffre);
+
+        if (resultat == SAISIE_EOF)
+            return SAISIE_EOF;
+
+        if (resultat == SAISIE_OK)
+        {
+            // L'utilisateur saisit de 1 à 9, la grille est indexée de 0 à 8.
+            obtenirValeur(s, ligne - 1, colonne - 1, &valeur);
+
+            if (valeur != 0)
+                printf("\nCette case est deja remplie.\n");
+            else if (placerChiffre(s, ligne - 1, colonne - 1, chiffre))
+                printf("\nChiffre place !\n");
+            else
+                printf("\nCe n'est pas le bon chiffre pour cette case.\n");
         }
     }
 }
