@@ -62,3 +62,39 @@
 	<limits.h>
 	<string.h>
 
+1795076189 source:c:\mes programmes\sudoku\projet-sudoku\sudoku\affichage.c
+	"affichage.h"
+
+1795076189 c:\mes programmes\sudoku\projet-sudoku\sudoku\affichage.h
+	"donnees.h"
+
+1795080203 c:\mes programmes\sudoku\projet-sudoku\sudoku\donnees.h
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
+	<time.h>
+
+1795077330 source:c:\mes programmes\sudoku\projet-sudoku\sudoku\donnees.c
+	"donnees.h"
+
+1795079385 source:c:\mes programmes\sudoku\projet-sudoku\sudoku\main.c
+	"donnees.h"
+	"saisie.h"
+	"affichage.h"
+	<windows.h>
+
+1795080203 c:\mes programmes\sudoku\projet-sudoku\sudoku\saisie.h
+	<stdio.h>
+	<ctype.h>
+	<limits.h>
+	"affichage.h"
+	"donnees.h"
+
+1795080203 source:c:\mes programmes\sudoku\projet-sudoku\sudoku\saisie.c
+	"saisie.h"
+	<stdio.h>
+	<ctype.h>
+	<limits.h>
+	<string.h>
+
