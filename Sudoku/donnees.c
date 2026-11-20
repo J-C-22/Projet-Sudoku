@@ -149,9 +149,18 @@ static int estCaseVide(Sudoku* s, int i, int j){
 }
 
 int placerChiffre(Sudoku* s, int i, int j, int x) {
-    if (s == NULL || i < 0 || i >= TAILLE || j < 0 || j >= TAILLE){return 0;}
-    if (x < 1 || x > 9) {return 0;}
-    if (!estCaseVide(s, i, j)){return 0;}
+    if (s == NULL || i < 0 || i >= TAILLE || j < 0 || j >= TAILLE){
+        s->erreurs++;
+        return 0;
+    }
+    if (x < 1 || x > 9){
+        s->erreurs++;
+        return 0;
+    }
+    if (!estCaseVide(s, i, j)){
+        s->erreurs++;
+        return 0;
+    }
     // Vérification de la réponse
     if (s->solution[i][j] != x){
         s->erreurs++;
