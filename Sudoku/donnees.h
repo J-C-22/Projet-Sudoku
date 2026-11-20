@@ -45,6 +45,7 @@ typedef struct sudoku {
     long tempsEcoule; /**< Temps accumulé en secondes. */
     time_t debutChrono; /**< Instant du dernier démarrage du chronomètre. */
     bool chronoActif; /**< Indique si le chronomètre est actuellement actif. */
+    int erreurs; /**< Nombre total d'erreurs commises pendant la partie. */
 } Sudoku;
 
 /**

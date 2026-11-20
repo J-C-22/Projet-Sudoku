@@ -10,6 +10,7 @@ void afficherPartie(Sudoku* s){
             else{printf("%d  ",x);}
         }
     }
+    printf("\n");
 }
 
 

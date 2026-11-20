@@ -7,8 +7,8 @@
 //return 0si probleme (en c 0=false)
 //return 1 si tout s'est bien passé(en c 1=true, de maniere générale seul 0=false; le rest est évalué à true)
 
-static int genererGrille(int n, int grille[TAILLE][TAILLE]) {
-    if (grille == NULL || n < 0 || n > TAILLE * TAILLE) {return 0;}
+static int genererGrille(int n, int grille[TAILLE][TAILLE]){
+    if (grille == NULL || n < 0 || n > TAILLE * TAILLE){return 0;}
     int positions[TAILLE * TAILLE];
     // Initialisation du tableau des positions.
     for (int i = 0; i < TAILLE * TAILLE; i++) {positions[i] = i;}
@@ -124,12 +124,12 @@ int initSudoku(Sudoku**  s, char* grille, int difficulte)
         }
     }
     // Génération des cases vides
-    if (!genererGrille(difficulte, (*s)->grille)) {
+    if (!genererGrille(difficulte, (*s)->grille)){
         free(*s);
         *s = NULL;
         return 0;
     }
-    // Initialisation du chronomètre
+    // Initialisation du chrono
     (*s)->tempsEcoule = 0;
     (*s)->chronoActif = false;
 
@@ -138,24 +138,40 @@ int initSudoku(Sudoku**  s, char* grille, int difficulte)
         *s = NULL;
         return 0;
     }
+    // Initialisation du compteur d'erreurs
+    (*s)->erreurs = 0;
     return 1;
 }
 
-static int estCaseVide(Sudoku* s, int i, int j) {
-    if (s == NULL || i < 0 || i >= TAILLE || j < 0 || j >= TAILLE) {return 0;}
+static int estCaseVide(Sudoku* s, int i, int j){
+    if (s == NULL || i < 0 || i >= TAILLE || j < 0 || j >= TAILLE){return 0;}
     return (s->grille[i][j] == 0);
 }
 
 int placerChiffre(Sudoku* s, int i, int j, int x) {
-    if (s == NULL || i < 0 || i >= TAILLE || j < 0 || j >= TAILLE) {return 0;}
-    if (x < 1 || x > 9) {return 0;}
-    if (!estCaseVide(s, i, j)) {return 0;}
-    if (s->solution[i][j] != x) {return 0;}
+    if (s == NULL || i < 0 || i >= TAILLE || j < 0 || j >= TAILLE){
+        s->erreurs++;
+        return 0;
+    }
+    if (x < 1 || x > 9){
+        s->erreurs++;
+        return 0;
+    }
+    if (!estCaseVide(s, i, j)){
+        s->erreurs++;
+        return 0;
+    }
+    // Vérification de la réponse
+    if (s->solution[i][j] != x){
+        s->erreurs++;
+        return 0;
+    }
     s->grille[i][j] = x;
     return 1;
 }
 
-int obtenirValeur(Sudoku* s, int i, int j, int *valeur) {
+
+int obtenirValeur(Sudoku* s, int i, int j, int *valeur){
     if (s == NULL || valeur == NULL || i < 0 || i >= TAILLE || j < 0 || j >= TAILLE) {return 0;}
     *valeur = s->grille[i][j];
     return 1;
@@ -168,7 +184,7 @@ int sauvegarderSudoku(Sudoku* s, char* nomFichier)
     // Récupération du temps écoulé
     long temps;
 
-    if (!obtenirTempsEcoule(s, &temps)) {return 0;}
+    if (!obtenirTempsEcoule(s, &temps)){return 0;}
     // Construction du chemin
     char chemin[256];
     int longueur = snprintf(chemin, sizeof(chemin),"grilles/saves/%s", nomFichier);
@@ -201,6 +217,10 @@ int sauvegarderSudoku(Sudoku* s, char* nomFichier)
     }
     // Sauvegarde du temps écoulé
     if (succes && fprintf(fichier, "\nTEMPS %ld\n", temps) < 0){succes = 0;}
+    // Sauvegarde du nombre d'erreurs
+    if (succes && fprintf(fichier, "ERREURS %d\n", s->erreurs) < 0){
+        succes = 0;
+    }
     // Fermeture du fichier
     if (fclose(fichier) != 0){succes = 0;}
     return succes;
@@ -272,6 +292,13 @@ int initSave(Sudoku** s, char* nomFichier)
     }
     // Récupération du temps sauvegardé
     if (fscanf(save, "%31s %ld", mot1, &(*s)->tempsEcoule) != 2 || strcmp(mot1, "TEMPS") != 0 || (*s)->tempsEcoule < 0){
+        fclose(save);
+        free(*s);
+        *s = NULL;
+        return 0;
+    }
+    // Récupération du nombre d'erreurs sauvegardé
+    if (fscanf(save, "%31s %d", mot1, &(*s)->erreurs) != 2 || strcmp(mot1, "ERREURS") != 0 || (*s)->erreurs < 0){
         fclose(save);
         free(*s);
         *s = NULL;
