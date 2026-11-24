@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <conio.h>
 
 //fgdfbsbsfb
 //Pour que l'importation successive du module ne duplique pas tout
@@ -15,9 +16,9 @@
 //Que pour les fonction qui fonctionne q'avec effet de bord: B à coté de la fonction
 
 typedef struct sudoku {
-int grille[TAILLE][TAILLE];
-int caseFixe[TAILLE][TAILLE];
-int solution[TAILLE][TAILLE];
+    int grille[TAILLE][TAILLE];
+    int caseFixe[TAILLE][TAILLE];
+    int solution[TAILLE][TAILLE];
 }Sudoku;
 
 Sudoku* initSudoku(char* grille, char* difficulte);//B

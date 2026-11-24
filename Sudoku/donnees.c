@@ -23,6 +23,7 @@ Sudoku* initSudoku(char* grille, char* difficulte){
     if(diff ==NULL){
         printf("Erreur: Impossible d'ouvrir le fichier. Il est vide\n");
     }
+
     // On remplie la grille solution
     for (int i=0; i<TAILLE;i++){
         for(int j=0;j<TAILLE;j++){

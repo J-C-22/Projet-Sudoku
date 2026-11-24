@@ -26,3 +26,32 @@
 1793720336 c:\mes codes\sudoku\affichage.h
 	"donnees.h"
 
+1795344823 source:c:\users\malva\documents\github\projet-sudoku\sudoku\affichage.c
+	"affichage.h"
+	<windows.h>
+
+1795272988 c:\users\malva\documents\github\projet-sudoku\sudoku\affichage.h
+	"donnees.h"
+
+1795271501 c:\users\malva\documents\github\projet-sudoku\sudoku\donnees.h
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<conio.h>
+
+1795271513 source:c:\users\malva\documents\github\projet-sudoku\sudoku\main.c
+	"donnees.h"
+	"saisie.h"
+	"affichage.h"
+
+1795271505 c:\users\malva\documents\github\projet-sudoku\sudoku\saisie.h
+	<stdio.h>
+	"affichage.h"
+
+1795273950 source:c:\users\malva\documents\github\projet-sudoku\sudoku\saisie.c
+	"saisie.h"
+	<stdio.h>
+
+1795273583 source:c:\users\malva\documents\github\projet-sudoku\sudoku\donnees.c
+	"donnees.h"
+

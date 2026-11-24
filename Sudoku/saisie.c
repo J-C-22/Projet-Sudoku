@@ -7,11 +7,7 @@ void nouvellePartie();
 
 void menu()
 {
-    printf("MENU PRINCIPAL \n\n");
-    printf("1  Nouvelle partie \n");
-    printf("2  Charger une partie sauvegarder \n");
-    printf("3  Aide \n");
-    printf("4  Quitter \n\n");
+    afficherMenu();
     int choix;
     scanf("%d", &choix);
     switch (choix)
@@ -40,11 +36,7 @@ void menu()
 
 void nouvellePartie()
 {
-    printf("NOUVELLE PARTIE \n\n");
-    printf("1  Facile \n");
-    printf("2  Intermediaire \n");
-    printf("3  Expert \n");
-    printf("4  Retour au menu \n\n");
+    afficherDifficulte();
     int choix;
     scanf("%d", &choix);
                 switch (choix)
