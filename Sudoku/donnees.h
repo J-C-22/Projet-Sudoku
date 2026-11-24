@@ -40,11 +40,11 @@
  @brief Structure contenant les données d'une partie de Sudoku.
 */
 typedef struct sudoku {
-    int grille[TAILLE][TAILLE]; /**< Grille en cours de résolution. */
-    int solution[TAILLE][TAILLE]; /**< Solution complète de la grille. */
-    long tempsEcoule; /**< Temps accumulé en secondes. */
-    time_t debutChrono; /**< Instant du dernier démarrage du chronomètre. */
-    bool chronoActif; /**< Indique si le chronomètre est actuellement actif. */
+    int grille[TAILLE][TAILLE];/**< Grille en cours de résolution.*/
+    int solution[TAILLE][TAILLE];/**<Solution complète de la grille.*/
+    long tempsEcoule;/**< Temps accumulé en secondes.*/
+    time_t debutChrono;/**< Instant du dernier démarrage du chronomètre.*/
+    bool chronoActif;/**< Indique si le chronomètre est actuellement actif.*/
 } Sudoku;
 
 /**
@@ -53,8 +53,8 @@ typedef struct sudoku {
  Si le chronomètre est actif, le temps écoulé depuis son dernier
  démarrage est ajouté au temps déjà accumulé, sans arrêter le chronomètre.
 
- @param s Pointeur vers la partie de Sudoku.
- @param temps Adresse de la variable qui recevra le temps écoulé, en secondes.
+ @param s: Pointeur vers la partie de Sudoku.
+ @param temps: Adresse de la variable qui recevra le temps écoulé, en secondes.
  @return 1 si la récupération a réussi, 0 en cas d'erreur.
 */
 int obtenirTempsEcoule(Sudoku *s, long *temps);
@@ -65,9 +65,9 @@ int obtenirTempsEcoule(Sudoku *s, long *temps);
  Charge la solution depuis un fichier, construit la grille de jeu
  en retirant un certain nombre de cases, puis démarre le chronomètre.
 
- @param s Adresse du pointeur qui recevra la partie créée.
- @param grille Nom du fichier contenant la solution.
- @param difficulte Nombre de cases à vider dans la grille.
+ @param s: Adresse du pointeur qui recevra la partie créée.
+ @param grille: Nom du fichier contenant la solution.
+ @param difficulte: Nombre de cases à vider dans la grille.
  @return 1 si l'initialisation a réussi, 0 en cas d'erreur.
 */
 int initSudoku(Sudoku** s, char* grille, int difficulte);
@@ -75,9 +75,9 @@ int initSudoku(Sudoku** s, char* grille, int difficulte);
 /**
  @brief Récupère la valeur d'une case de la grille.
 
- @param s Pointeur vers la partie de Sudoku.
- @param i Indice de la ligne.
- @param j Indice de la colonne.
+ @param s: Pointeur vers la partie de Sudoku.
+ @param i: Indice de la ligne.
+ @param j: Indice de la colonne.
  @param valeur Adresse de la variable qui recevra la valeur de la case.
  @return 1 si la récupération a réussi, 0 en cas d'erreur.
 */
@@ -89,10 +89,10 @@ int obtenirValeur(Sudoku* s, int i, int j, int *valeur);
  Le chiffre est placé uniquement s'il correspond à la valeur attendue
  dans la solution.
 
- @param s Pointeur vers la partie de Sudoku.
- @param i Indice de la ligne.
- @param j Indice de la colonne.
- @param x Chiffre à placer.
+ @param s: Pointeur vers la partie de Sudoku.
+ @param i: Indice de la ligne.
+ @param j: Indice de la colonne.
+ @param x: Chiffre à placer.
  @return 1 si le chiffre a été placé, 0 en cas d'erreur.
 */
 int placerChiffre(Sudoku* s, int i, int j, int x);
@@ -103,8 +103,8 @@ int placerChiffre(Sudoku* s, int i, int j, int x);
  La sauvegarde contient les données nécessaires pour reprendre
  la partie ultérieurement, notamment le temps écoulé.
 
- @param s Pointeur vers la partie à sauvegarder.
- @param nomFichier Nom du fichier de sauvegarde.
+ @param s: Pointeur vers la partie à sauvegarder.
+ @param nomFichier: Nom du fichier de sauvegarde.
  @return 1 si la sauvegarde a réussi, 0 en cas d'erreur.
 */
 int sauvegarderSudoku(Sudoku* s, char* nomFichier);
@@ -115,8 +115,8 @@ int sauvegarderSudoku(Sudoku* s, char* nomFichier);
  Charge la grille, sa solution et le temps déjà écoulé, puis
  redémarre le chronomètre.
 
- @param s Adresse du pointeur qui recevra la partie restaurée.
- @param nomFichier Nom du fichier de sauvegarde.
+ @param s: Adresse du pointeur qui recevra la partie restaurée.
+ @param nomFichier: Nom du fichier de sauvegarde.
  @return 1 si le chargement a réussi, 0 en cas d'erreur.
 */
 int initSave(Sudoku** s, char* nomFichier);

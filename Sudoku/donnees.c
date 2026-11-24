@@ -176,7 +176,7 @@ int sauvegarderSudoku(Sudoku* s, char* nomFichier)
     // Ouverture du fichier
     FILE* fichier = fopen(chemin, "w");
     if (fichier == NULL){return 0;}
-    int succes = 1;//explication à la fin
+    int succes = 1;//explication à la fin de la fonction
     // Sauvegarde de la grille actuelle
     if (fprintf(fichier, "MATRICE GRILLE\n") < 0){succes = 0;}
     for (int i = 0; i < TAILLE && succes; i++){
