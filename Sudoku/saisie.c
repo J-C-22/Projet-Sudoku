@@ -139,9 +139,9 @@ void menu(void)
 // Renvoie 1 si la partie a pu être lancée, 0 si la grille n'a pas pu être chargée.
 static int lancerPartie(int difficulte)
 {
-    Sudoku *s = NULL;
+    Sudoku *s = initSudoku("grille1.txt", difficulte);
 
-    if (!initSudoku(&s, "grille1.txt", difficulte))
+    if (s == NULL)
     {
         afficherErreur();
         printf("Impossible de charger la grille.\n\n");
@@ -279,7 +279,6 @@ void finDePartie(void)
 // Renvoie 1 si toutes les cases de la grille sont remplies, 0 sinon.
 static int grilleComplete(Sudoku *s)
 {
-    int valeur;
     int i;
     int j;
 
@@ -287,7 +286,7 @@ static int grilleComplete(Sudoku *s)
     {
         for (j = 0; j < TAILLE; j++)
         {
-            if (!obtenirValeur(s, i, j, &valeur) || valeur == 0)
+            if (obtenirValeur(s, i, j) == 0)
                 return 0;
         }
     }
@@ -342,16 +341,16 @@ int saisiePartie(Sudoku *s)
             return SAISIE_EOF;
 
         if (resultat == SAISIE_OK)
-        {
-            // L'utilisateur saisit de 1 à 9, la grille est indexée de 0 à 8.
-            obtenirValeur(s, ligne - 1, colonne - 1, &valeur);
+            {
+                // L'utilisateur saisit de 1 à 9, la grille est indexée de 0 à 8.
+                valeur = obtenirValeur(s, ligne - 1, colonne - 1);
 
-            if (valeur != 0)
-                printf("\nCette case est deja remplie.\n");
-            else if (placerChiffre(s, ligne - 1, colonne - 1, chiffre))
-                printf("\nChiffre place !\n");
-            else
-                printf("\nCe n'est pas le bon chiffre pour cette case.\n");
-        }
+                if (valeur != 0)
+                    printf("\nCette case est deja remplie.\n");
+                else if (placerChiffre(s, ligne - 1, colonne - 1, chiffre) == 1)
+                    printf("\nChiffre place !\n");
+                else
+                    printf("\nCe n'est pas le bon chiffre pour cette case.\n");
+            }
     }
 }

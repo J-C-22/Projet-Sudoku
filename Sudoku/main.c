@@ -5,7 +5,7 @@
 
 int main(){
     srand(time(NULL));
-    //menu();
+    menu();
     Sudoku* s = initSudoku("grille1.txt",FACILE);
     afficherPartie(s);
 
